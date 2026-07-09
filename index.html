@@ -83,6 +83,7 @@
   .grid{display:grid; grid-template-columns:1.35fr 1fr; gap:18px; margin-bottom:18px; align-items:stretch;}
   .grid.even{grid-template-columns:1fr 1fr;}
   .grid.full{grid-template-columns:1fr;}
+  .grid.wide-even{grid-template-columns:1fr 1fr;}
   .grid.quad{grid-template-columns:repeat(4,1fr);}
   @media(max-width:1000px){.grid,.grid.even{grid-template-columns:1fr;} .grid.quad{grid-template-columns:1fr 1fr;} .kpis{grid-template-columns:1fr 1fr;}}
   @media(max-width:560px){.grid.quad{grid-template-columns:1fr;}}
@@ -91,8 +92,8 @@
 
   .panel{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; box-shadow:0 12px 30px rgba(45,41,38,0.06); position:relative; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;}
   .panel:hover{transform:translateY(-2px); border-color:rgba(208,74,2,.34); box-shadow:0 16px 34px rgba(45,41,38,.09), 0 0 0 1px rgba(208,74,2,.06), 0 0 26px rgba(208,74,2,.07);}
-  .panel::after,.risk-card::after,.rmf-card::after,.kpi::after,.score-card::after{content:''; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .2s ease; background:conic-gradient(from 45deg, transparent 0 18%, rgba(208,74,2,.36), rgba(255,182,0,.34), transparent 58% 100%); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; padding:1px;}
-  .panel:hover::after,.risk-card:hover::after,.rmf-card:hover::after,.kpi:hover::after,.score-card:hover::after{opacity:1;}
+  .panel::after,.risk-card::after,.rmf-card::after,.kpi::after{content:''; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .2s ease; background:conic-gradient(from 45deg, transparent 0 18%, rgba(208,74,2,.36), rgba(255,182,0,.34), transparent 58% 100%); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; padding:1px;}
+  .panel:hover::after,.risk-card:hover::after,.rmf-card:hover::after,.kpi:hover::after{opacity:1;}
   .panel-head{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;}
   .panel-title{font-size:16px; font-weight:700; letter-spacing:-0.1px;}
   .panel-sub{color:var(--sub); font-size:12px; margin-top:3px; font-family:var(--mono);}
@@ -122,10 +123,6 @@
   .risk-card.selected{border-color:var(--orange); background:linear-gradient(180deg, rgba(208,74,2,0.12), var(--panel)); box-shadow:0 10px 24px rgba(208,74,2,0.16);}
   .risk-card .rid{font-family:var(--mono); font-size:11px; color:var(--orange); font-weight:600;}
   .risk-card .rname{font-size:13.5px; font-weight:700; margin-top:6px; line-height:1.3;}
-  .risk-card .rsev{margin-top:10px; display:flex; gap:3px;}
-  .risk-card .pip{width:14px; height:4px; border-radius:2px; background:var(--line);}
-  .risk-card .pip.on{background:var(--rose);}
-
   .risk-detail{margin-top:18px; background:var(--panel); border:1px solid var(--orange); border-radius:12px; padding:26px; animation:fadeIn .3s ease;}
   .rd-head{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:flex-start; border-bottom:1px solid var(--line); padding-bottom:16px;}
   .rd-head h3{margin:0; font-size:21px; font-weight:800;}
@@ -151,21 +148,32 @@
   .rmf-card .rid{font-family:var(--mono); font-size:11px; letter-spacing:1px; color:var(--orange); font-weight:600;}
   .rmf-card .rname{font-size:18px; font-weight:800; margin-top:8px;}
   .rmf-card .rdesc{font-size:12.5px; color:var(--sub); line-height:1.5; margin-top:8px;}
-  .trust-strip{display:grid; grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); gap:10px; margin-top:18px;}
-  @media(max-width:1100px){.trust-strip{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:640px){.trust-strip{grid-template-columns:1fr 1fr;}}
-  .trust-pill{border:1px solid var(--line); background:#FFFDF8; border-radius:8px; padding:12px 10px; min-height:56px; font-size:11.5px; font-weight:700; line-height:1.25; color:var(--text); display:flex; align-items:center; justify-content:center; text-align:center; transition:all .18s ease;}
-  .trust-pill:hover{border-color:rgba(208,74,2,.4); background:#FFF6E6; transform:translateY(-2px);}
+  .trust-map{display:grid; grid-template-columns:220px 1fr; gap:18px; margin-top:18px; align-items:stretch;}
+  .trust-core{border:1px solid rgba(208,74,2,.3); background:linear-gradient(180deg,#FFF6E6,#FFFDF8); border-radius:12px; display:flex; align-items:center; justify-content:center; text-align:center; min-height:180px; font-weight:800; color:var(--orange);}
+  .trust-list{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  .trust-item{border-left:3px solid var(--orange); background:#FFFDF8; border-radius:8px; padding:11px 12px; font-size:12.5px; font-weight:700; color:var(--text); line-height:1.35;}
+  .trust-item:nth-child(2n){border-left-color:var(--yellow);}
+  .trust-item:nth-child(3n){border-left-color:var(--rose);}
+  @media(max-width:900px){.trust-map{grid-template-columns:1fr;} .trust-list{grid-template-columns:1fr;}}
 
   /* ===== COMPLIANCE TAB ===== */
-  .pyramid{display:flex; flex-direction:column; align-items:center; gap:5px; margin-top:14px;}
-  .pyr-tier{border-radius:8px; padding:10px 18px; text-align:center; font-weight:600; font-size:13px; transition:transform .15s, box-shadow .15s; cursor:default;}
+  .pyramid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+  .pyr-tier{border-radius:8px; padding:14px 16px; text-align:left; font-weight:700; font-size:13px; transition:transform .15s, box-shadow .15s; cursor:default; min-height:118px;}
   .pyr-tier:hover{transform:scale(1.02);}
   .pyr-tier small{display:block; font-weight:400; font-size:11px; opacity:.85; margin-top:3px; font-family:var(--mono);}
-  .pyr-1{width:46%; min-width:220px; background:var(--red); color:#fff;}
-  .pyr-2{width:62%; min-width:260px; background:var(--orange); color:#fff;}
-  .pyr-3{width:78%; min-width:300px; background:var(--yellow); color:#1a1a1a;}
-  .pyr-4{width:94%; min-width:330px; background:#E7D4BC; color:var(--text);}
+  .pyr-1,.pyr-2,.pyr-3,.pyr-4{width:auto; min-width:0;}
+  .pyr-1{background:var(--red); color:#fff;}
+  .pyr-2{background:var(--orange); color:#fff;}
+  .pyr-3{background:var(--yellow); color:#1a1a1a;}
+  .pyr-4{background:#E7D4BC; color:var(--text);}
+  @media(max-width:760px){.pyramid{grid-template-columns:1fr;}}
+  .official-checks{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px;}
+  @media(max-width:1000px){.official-checks{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:620px){.official-checks{grid-template-columns:1fr;}}
+  .official-check{border:1px solid var(--line); background:#FFFDF8; border-radius:10px; padding:15px; min-height:150px;}
+  .official-check .oc-id{font-family:var(--mono); color:var(--orange); font-size:10px; letter-spacing:1px; text-transform:uppercase;}
+  .official-check h4{margin:8px 0; font-size:15px;}
+  .official-check p{margin:0; color:var(--sub); font-size:12.5px; line-height:1.55;}
   .fine-row{display:flex; justify-content:space-between; align-items:center; padding:15px 16px; border:1px solid var(--line); background:var(--panel-2); border-radius:9px; margin-top:10px; gap:14px; transition:all .18s ease;}
   .fine-row:hover{border-color:rgba(208,74,2,.35); transform:translateY(-1px);}
   .fine-row .amt{font-family:var(--mono); font-weight:600; font-size:16px; white-space:nowrap;}
@@ -184,37 +192,6 @@
   .tl-item .tl-date{font-family:var(--mono); font-size:11px; color:var(--tangerine);}
   .tl-item .tl-txt{font-size:13px; margin-top:2px; line-height:1.5;}
   .tl-item .tl-txt small{color:var(--sub);}
-  .exposure-checker{margin-top:18px;}
-  .checker-layout{display:grid; grid-template-columns:1.15fr .85fr; gap:22px; align-items:start; margin-top:18px;}
-  @media(max-width:1000px){.checker-layout{grid-template-columns:1fr;}}
-  .checker-copy{max-width:780px;}
-  .checker-questions{display:flex; flex-direction:column; gap:16px;}
-  .checker-q{padding-bottom:15px; border-bottom:1px solid var(--line);}
-  .checker-q:last-child{border-bottom:none; padding-bottom:0;}
-  .checker-q h4{font-size:14px; margin:0 0 10px; line-height:1.35;}
-  .checker-options{display:grid; grid-template-columns:repeat(3,1fr); gap:7px;}
-  @media(max-width:700px){.checker-options{grid-template-columns:1fr;}}
-  .checker-option{min-height:44px; border:1px solid var(--line); background:#FFFDF8; color:var(--text); border-radius:8px; padding:9px 10px; font-family:var(--disp); font-size:12.5px; font-weight:700; cursor:pointer; transition:all .16s; text-align:left;}
-  .checker-option:hover{border-color:var(--tangerine); background:#FFF6E6; transform:translateY(-1px);}
-  .checker-option.active{border-color:var(--orange); background:rgba(208,74,2,0.1); box-shadow:inset 3px 0 0 var(--orange);}
-  .checker-hint{font-size:12px; color:var(--sub); line-height:1.5; margin-top:8px;}
-  .score-card{border:1px solid var(--line); background:linear-gradient(180deg,#FFFDF8 0%,#F8ECDD 100%); border-radius:12px; padding:20px; position:sticky; top:82px; transition:all .18s ease;}
-  .score-card:hover{border-color:rgba(208,74,2,.34); box-shadow:0 14px 30px rgba(45,41,38,.08), 0 0 22px rgba(208,74,2,.08);}
-  .score-label{font-family:var(--mono); font-size:10px; letter-spacing:1.4px; color:var(--sub); text-transform:uppercase;}
-  .score-row{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-top:8px;}
-  .score-num{font-family:var(--mono); font-size:56px; line-height:.95; font-weight:600; color:var(--orange);}
-  .score-band{font-size:18px; font-weight:800;}
-  .score-meter{height:9px; border-radius:999px; background:#E6D7C6; overflow:hidden; margin:16px 0 14px;}
-  .score-fill{height:100%; width:0; border-radius:inherit; background:linear-gradient(90deg,var(--yellow),var(--tangerine),var(--red)); transition:width .2s;}
-  .score-message{font-size:13.5px; line-height:1.55; color:var(--text); margin:0 0 16px;}
-  .focus-title{font-family:var(--mono); font-size:10.5px; letter-spacing:1.3px; color:var(--orange); text-transform:uppercase; margin-bottom:9px;}
-  .focus-list{display:flex; flex-direction:column; gap:8px;}
-  .focus-item{display:flex; gap:9px; align-items:flex-start; padding:9px 10px; border:1px solid rgba(208,74,2,0.18); background:rgba(255,249,241,0.78); border-radius:8px; font-size:12.5px; line-height:1.4;}
-  .focus-item .dot{width:8px; height:8px; border-radius:50%; background:var(--orange); margin-top:4px; flex:0 0 auto;}
-  .checker-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
-  .checker-reset{border:1px solid var(--line); background:#FFFDF8; color:var(--text); border-radius:8px; padding:10px 13px; font-family:var(--mono); font-size:11px; cursor:pointer;}
-  .checker-reset:hover{border-color:var(--orange);}
-
   /* ===== SPOTLIGHT ===== */
   .spotlight{border-left:3px solid var(--rose); padding-left:18px; margin-top:16px;}
   .spotlight .meta{font-family:var(--mono); font-size:11px; color:var(--sub); margin-bottom:8px;}
@@ -239,7 +216,7 @@
   <div class="mast">
     <div class="mast-top">
       <div>
-        <div class="kicker">AI Governance &middot; Threat Intelligence &middot; Regulatory Readiness</div>
+        <div class="kicker">AI Governance &middot; Regulatory Readiness</div>
         <h1 id="brandTitle" data-final="PwC AI RiskRadar">PwC AI <span class="accent">RiskRadar</span></h1>
         <div class="mast-sub">A single view of the AI incident landscape, the LLM attack surface, and EU regulatory exposure - built from OECD, MIT, OWASP and McKinsey datasets.</div>
       </div>
@@ -257,6 +234,20 @@
 
   <!-- ============ TAB 1: OVERVIEW ============ -->
   <div class="tab-panel active" id="tab-overview">
+    <div class="grid full" style="margin-top:26px;">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">The risk takeaway</div>
+            <div class="panel-sub">Why this dashboard exists</div>
+          </div>
+        </div>
+        <div class="note" style="font-size:14px; line-height:1.8; margin-top:14px; color:var(--text);">
+          Adoption at <b style="color:var(--orange)">88%</b> x AI incident volume up <b style="color:var(--rose)">~10x</b> since 2016 x EU AI Act penalties up to <b style="color:var(--red)">7% of global turnover</b> = AI risk has moved from an IT concern to a <b>board-level exposure</b>. Management controls three levers: inventory and classify AI systems, harden LLM applications against known attack patterns, and monitor incident signals before they become operational or regulatory events.
+        </div>
+      </div>
+    </div>
+
     <div class="kpis">
       <div class="kpi"><div class="val">88%</div><div class="lbl">Organizations using AI in &ge;1 business function (2025)</div><div class="trend">&#9650; +10 pts vs 2024 &middot; McKinsey</div></div>
       <div class="kpi"><div class="val">~410</div><div class="lbl">AI incidents logged by MIT's dataset in 2025 - the highest year on record</div><div class="trend">&#9650; ~10x vs 2016 &middot; MIT AI Risk Repository</div></div>
@@ -264,64 +255,7 @@
       <div class="kpi"><div class="val">&euro;35M / 7%</div><div class="lbl">Maximum EU AI Act penalty - prohibited practices, worldwide turnover</div><div class="trend">Full regime applies 2 Aug 2026</div></div>
     </div>
 
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="panel-title">Adoption is outrunning governance</div>
-            <div class="panel-sub">McKinsey Global Surveys on the State of AI, 2017-25 &middot; % of respondents</div>
-          </div>
-          <span class="badge src">MCKINSEY &middot; PUBLISHED FIGURES</span>
-        </div>
-        <div class="chart-box tall"><canvas id="mckChart"></canvas></div>
-        <div class="note">Definition of "AI use" evolved over survey years (see McKinsey footnote 1). The strategic point for the board: the attack surface has nearly doubled since 2022, while most organizations remain in experimentation. <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank">Full report -></a></div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="panel-title">Maturity of AI programs, 2025</div>
-            <div class="panel-sub">Phase of AI use among adopting organizations</div>
-          </div>
-          <span class="badge src">MCKINSEY</span>
-        </div>
-        <div class="chart-box tall"><canvas id="phaseChart"></canvas></div>
-        <div class="note">Only <b style="color:var(--yellow)">7%</b> report fully scaled AI. 62% are still experimenting or piloting - precisely the phase where security review, red-teaming and governance controls are most often skipped.</div>
-      </div>
-    </div>
-
-    <div class="grid even">
-      <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="panel-title">The risk takeaway in one line</div>
-            <div class="panel-sub">Why this dashboard exists</div>
-          </div>
-        </div>
-        <div class="note" style="font-size:14px; line-height:1.8; margin-top:14px; color:var(--text);">
-          Adoption at <b style="color:var(--yellow)">88%</b> x incidents up <b style="color:var(--rose)">~10x</b> since 2016 x fines up to <b style="color:var(--red)">7% of global turnover</b> from August 2026 = AI risk has moved from an IT concern to a <b>board-level exposure</b>. The three levers management controls: an inventory of AI systems mapped to EU risk tiers (Tab 04), hardening against the OWASP LLM Top 10 (Tab 03), and monitoring the incident landscape for early signals (Tab 02).
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="panel-title">Case in point - the Nx supply-chain attack</div>
-            <div class="panel-sub">Aug 26-27, 2025 &middot; npm ecosystem</div>
-          </div>
-          <span class="badge src">SNYK &middot; AIID #1210</span>
-        </div>
-        <div class="spotlight">
-          <div class="meta">FIRST DOCUMENTED MALWARE WEAPONIZING AI CODING AGENTS</div>
-          <p>Eight malicious Nx / Nx Powerpack releases were live on npm for ~5h20m after a CI compromise. The payload invoked developers' <b>locally installed AI coding agents</b> to locate and exfiltrate credentials - turning trusted AI tools into the attacker's reconnaissance layer.</p>
-          <div class="note">Maps to <b>LLM03 Supply Chain</b> + <b>LLM06 Excessive Agency</b> - full anatomy in Tab 02. <a href="https://snyk.io/blog/weaponizing-ai-coding-agents-for-malware-in-the-nx-malicious-package/" target="_blank">Snyk analysis -></a> &middot; <a href="https://incidentdatabase.ai/cite/1210" target="_blank">AIID #1210 -></a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ TAB 2: INCIDENTS ============ -->
-  <div class="tab-panel" id="tab-incidents">
-    <div class="grid full" style="margin-top:26px;">
+    <div class="grid full">
       <div class="panel">
         <div class="panel-head">
           <div>
@@ -339,65 +273,32 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="panel-title">Incidents by EU AI Act risk level</div>
-            <div class="panel-sub">MIT AI Risk Repository &middot; incident dataset &middot; stacked by year</div>
+            <div class="panel-title">AI adoption is outrunning governance capacity</div>
+            <div class="panel-sub">McKinsey Global Surveys on the State of AI, 2017-25 &middot; % of respondents</div>
           </div>
-          <span class="badge approx">DIGITIZED FROM MIT DATASET</span>
+          <span class="badge src">MCKINSEY &middot; PUBLISHED FIGURES</span>
         </div>
-        <div class="chart-box tall"><canvas id="mitChart"></canvas></div>
-        <div class="note">Growth is dominated by <b style="color:#2E9E82">Limited Risk</b> systems (chatbots, generative tools) - but <b style="color:var(--red)">Unacceptable-tier incidents appear from 2023</b> onward, the category carrying &euro;35M/7% fines. 2026 is partial-year.</div>
+        <div class="chart-box tall"><canvas id="mckChart"></canvas></div>
+        <div class="note">The adoption line is the demand signal; the governance challenge is the control lag underneath it. Treat every expansion in AI use as a trigger to update inventory, model ownership, data controls, testing evidence, and monitoring thresholds.</div>
       </div>
 
-      <div class="panel anatomy-panel">
+      <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="panel-title">Anatomy of the Nx attack</div>
-            <div class="panel-sub">How AI agents became the exfiltration tool</div>
+            <div class="panel-title">Governance maturity gap, 2025</div>
+            <div class="panel-sub">Phase of AI use among adopting organizations</div>
           </div>
-          <span class="badge src">SNYK &middot; AIID #1210</span>
+          <span class="badge src">MCKINSEY</span>
         </div>
-        <div class="anatomy">
-          <div class="an-step"><div class="an-n">1</div><div class="an-t"><b>CI workflow compromised</b> - attackers gain publish rights to the Nx npm packages.</div></div>
-          <div class="an-step"><div class="an-n">2</div><div class="an-t"><b>8 malicious releases</b> pushed across two version lines; live ~5h 20m before removal.</div></div>
-          <div class="an-step"><div class="an-n">3</div><div class="an-t"><b>postinstall script executes</b> on every developer machine and CI runner that updates.</div></div>
-          <div class="an-step"><div class="an-n">4</div><div class="an-t"><b>Local AI coding agents invoked</b> to search the filesystem for credentials, tokens, wallets - the AI does the attacker's recon.</div></div>
-          <div class="an-step"><div class="an-n">5</div><div class="an-t"><b>Secrets exfiltrated</b> to attacker-controlled repositories.</div></div>
-        </div>
-        <div class="note">Control lesson: agent tooling on developer machines must be least-privilege (LLM06) and package pipelines treated as production attack surface (LLM03).</div>
+        <div class="chart-box tall"><canvas id="phaseChart"></canvas></div>
+        <div class="note">Only <b style="color:var(--orange)">7%</b> report fully scaled AI. The governance implication: most organizations are still piloting or scaling, exactly where ownership, security review, red-teaming, and evidence capture often lag adoption.</div>
       </div>
     </div>
+  </div>
 
-    <!-- MIT risk profile donuts -->
-    <div class="panel" style="margin-bottom:18px;">
-      <div class="panel-head">
-        <div>
-          <div class="panel-title">The profile of an AI incident</div>
-          <div class="panel-sub">MIT AI Risk Repository &middot; incident dataset &middot; distribution across all tracked incidents</div>
-        </div>
-        <span class="badge src">MIT &middot; PUBLISHED PERCENTAGES</span>
-      </div>
-      <div class="grid quad" style="margin-top:16px; margin-bottom:0;">
-        <div>
-          <div class="chart-box short"><canvas id="domainChart"></canvas></div>
-          <div class="stat-callout">RISK DOMAIN - Malicious actors & misuse is the single largest category at 37.8%. AI incidents are increasingly attacks, not accidents.</div>
-        </div>
-        <div>
-          <div class="chart-box short"><canvas id="entityChart"></canvas></div>
-          <div class="stat-callout">ENTITY - In 64.2% of incidents the AI system itself is the causal entity, vs 35.1% human-driven.</div>
-        </div>
-        <div>
-          <div class="chart-box short"><canvas id="timingChart"></canvas></div>
-          <div class="stat-callout">TIMING - 97.6% of incidents surface post-deployment. Pre-launch testing alone will not catch them: production monitoring is non-negotiable.</div>
-        </div>
-        <div>
-          <div class="chart-box short"><canvas id="intentChart"></canvas></div>
-          <div class="stat-callout">INTENT - A near-even split: 49.5% unintentional vs 49.1% intentional. Your controls must cover both accidents and adversaries.</div>
-        </div>
-      </div>
-      <div class="note">Read together: the modal AI incident is a <b>deliberate misuse of a deployed system</b>, equally likely to be malicious as accidental. This is why the OWASP controls (Tab 03) emphasize runtime guardrails over pre-launch review.</div>
-    </div>
-
-    <div class="grid full">
+  <!-- ============ TAB 2: INCIDENTS ============ -->
+  <div class="tab-panel" id="tab-incidents">
+    <div class="grid full" style="margin-top:26px;">
       <div class="panel">
         <div class="panel-head">
           <div>
@@ -415,6 +316,74 @@
         </div>
         <div class="chart-box tall"><canvas id="indChart"></canvas></div>
         <div class="note" id="sectorNote">Government, security & defence leads throughout and spikes hardest in 2025-26. Quarterly values approximated from AIM's monthly top-10 industry chart.</div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:18px;">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">AI incident operating profile</div>
+          <div class="panel-sub">MIT AI Risk Repository &middot; published percentages</div>
+        </div>
+        <span class="badge src">MIT &middot; PUBLISHED PERCENTAGES</span>
+      </div>
+      <div class="grid even" style="grid-template-columns:repeat(3,1fr); margin-top:16px; margin-bottom:0;">
+        <div>
+          <div class="chart-box short"><canvas id="entityChart"></canvas></div>
+          <div class="stat-callout">ENTITY - In 64.2% of incidents the AI system itself is the identified entity, vs 35.1% human-driven.</div>
+        </div>
+        <div>
+          <div class="chart-box short"><canvas id="timingChart"></canvas></div>
+          <div class="stat-callout">TIMING - 97.6% of incidents surface post-deployment. Pre-launch testing alone will not catch them: production monitoring is non-negotiable.</div>
+        </div>
+        <div>
+          <div class="chart-box short"><canvas id="intentChart"></canvas></div>
+          <div class="stat-callout">INTENT - A near-even split: 49.5% unintentional vs 49.1% intentional. Your controls must cover both accidents and adversaries.</div>
+        </div>
+      </div>
+      <div class="note">Read together: the modal AI incident is a <b>deliberate misuse of a deployed system</b>, equally likely to be malicious as accidental. This is why the OWASP controls (Tab 03) emphasize runtime guardrails over pre-launch review.</div>
+    </div>
+
+    <div class="grid wide-even">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Incidents by EU AI Act risk level</div>
+            <div class="panel-sub">MIT AI Risk Repository &middot; incident dataset &middot; stacked by year</div>
+          </div>
+          <span class="badge approx">DIGITIZED FROM MIT DATASET</span>
+        </div>
+        <div class="chart-box tall"><canvas id="mitChart"></canvas></div>
+        <div class="note">Growth is dominated by <b style="color:var(--yellow)">Limited Risk</b> systems (chatbots, generative tools) - but <b style="color:var(--red)">Unacceptable-tier incidents appear from 2023</b> onward, the category carrying &euro;35M/7% fines. 2026 is partial-year.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Risk domain concentration</div>
+            <div class="panel-sub">MIT AI Risk Repository &middot; published percentages</div>
+          </div>
+          <span class="badge src">MIT</span>
+        </div>
+        <div class="chart-box tall"><canvas id="domainChart"></canvas></div>
+        <div class="stat-callout">RISK DOMAIN - Malicious actors & misuse is the single largest category at 37.8%. AI incidents are increasingly attacks, not accidents.</div>
+      </div>
+    </div>
+
+    <div class="grid full">
+      <div class="panel anatomy-panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Case in point - the Nx supply-chain attack</div>
+            <div class="panel-sub">Aug 26-27, 2025 &middot; npm ecosystem</div>
+          </div>
+          <span class="badge src">SNYK &middot; AIID #1210</span>
+        </div>
+        <div class="spotlight">
+          <div class="meta">FIRST DOCUMENTED MALWARE WEAPONIZING AI CODING AGENTS</div>
+          <p>Eight malicious Nx / Nx Powerpack releases were live on npm for ~5h20m after a CI compromise. The payload invoked developers' <b>locally installed AI coding agents</b> to locate and exfiltrate credentials - turning trusted AI tools into the attacker's reconnaissance layer.</p>
+          <div class="note">Maps to <b>LLM03 Supply Chain</b> + <b>LLM06 Excessive Agency</b>. Control lesson: agent tooling on developer machines must be least-privilege and package pipelines treated as production attack surface.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -449,14 +418,17 @@
         </div>
         <a class="rd-link" href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank">OPEN NIST PDF -></a>
       </div>
-      <div class="trust-strip">
-        <div class="trust-pill">Valid & reliable</div>
-        <div class="trust-pill">Safe</div>
-        <div class="trust-pill">Secure & resilient</div>
-        <div class="trust-pill">Accountable & transparent</div>
-        <div class="trust-pill">Explainable & interpretable</div>
-        <div class="trust-pill">Privacy-enhanced</div>
-        <div class="trust-pill">Fair, with harmful bias managed</div>
+      <div class="trust-map">
+        <div class="trust-core">Trustworthy<br>AI</div>
+        <div class="trust-list">
+          <div class="trust-item">Valid & reliable</div>
+          <div class="trust-item">Safe</div>
+          <div class="trust-item">Secure & resilient</div>
+          <div class="trust-item">Accountable & transparent</div>
+          <div class="trust-item">Explainable & interpretable</div>
+          <div class="trust-item">Privacy-enhanced</div>
+          <div class="trust-item">Fair, with harmful bias managed</div>
+        </div>
       </div>
     </div>
     <div class="rmf-grid" id="rmfGrid"></div>
@@ -469,19 +441,19 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="panel-title">The EU AI Act risk pyramid</div>
-            <div class="panel-sub">Regulation (EU) 2024/1689 &middot; obligations scale with risk tier</div>
+            <div class="panel-title">EU AI Act classification tiers</div>
+            <div class="panel-sub">Regulation (EU) 2024/1689 &middot; obligations scale with legal classification</div>
           </div>
           <span class="badge src">EU AI ACT</span>
         </div>
         <div class="pyramid">
-          <div class="pyr-tier pyr-1">Unacceptable Risk<small>PROHIBITED - social scoring, manipulative AI, real-time remote biometric ID (with narrow exceptions)</small></div>
-          <div class="pyr-tier pyr-2">High Risk<small>CONFORMITY ASSESSMENT - hiring, credit, critical infrastructure, medical, law enforcement</small></div>
-          <div class="pyr-tier pyr-3">Limited Risk<small>TRANSPARENCY - chatbots must disclose they're AI; deepfakes must be labelled</small></div>
-          <div class="pyr-tier pyr-4">Minimal / No Risk<small>NO NEW OBLIGATIONS - spam filters, AI in games, most internal tooling</small></div>
+          <div class="pyr-tier pyr-1">Prohibited AI practices<small>Article 5 bans selected uses such as harmful manipulation, certain social scoring, and specified biometric practices, subject to defined exceptions.</small></div>
+          <div class="pyr-tier pyr-2">High-risk AI systems<small>Systems covered by Annex III use cases or safety components/products under Annex I face risk-management, data, documentation, oversight and conformity obligations.</small></div>
+          <div class="pyr-tier pyr-3">Transparency and GPAI duties<small>Selected AI systems, including chatbots and deepfakes, have transparency duties; general-purpose AI model providers have separate obligations.</small></div>
+          <div class="pyr-tier pyr-4">Other AI systems<small>Most other AI systems do not receive the same AI Act obligations, though voluntary codes, existing law and internal controls may still apply.</small></div>
         </div>
-        <div class="note">Note the mirror with Tab 02: most <i>reported incidents</i> come from Limited-Risk systems, but the <i>largest fines</i> attach to the Unacceptable and High-Risk tiers. Classify your inventory first.</div>
-        <a class="cta" href="https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/" target="_blank">Run the EU AI Act Compliance Checker -></a>
+        <div class="note">This view is based on the official EU regulation. Classification depends on the specific system, role, intended purpose, market placement and use context; use counsel or a formal compliance workflow for binding determinations.</div>
+        <a class="cta" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank">Open official EU AI Act -></a>
       </div>
 
       <div class="panel">
@@ -495,7 +467,7 @@
         <div class="fine-row f1"><div class="amt">&euro;35,000,000 / 7%</div><div class="desc">Violations of prohibited AI practice rules (Art. 5)</div></div>
         <div class="fine-row f2"><div class="amt">&euro;15,000,000 / 3%</div><div class="desc">Non-compliance with other AI Act obligations</div></div>
         <div class="fine-row f3"><div class="amt">&euro;7,500,000 / 1%</div><div class="desc">Supplying incorrect, incomplete or misleading information to authorities</div></div>
-        <div class="note">Percentages are of total worldwide annual turnover. For a &euro;10B-revenue group, top-tier exposure is <b style="color:var(--red)">&euro;700M per violation category</b>. Source: <a href="https://elevateconsult.com/insights/the-cost-of-inaction-budgeting-for-ai-risk-assessment-vs-fines/" target="_blank">Elevate Consulting</a>.</div>
+        <div class="note">Percentages are of total worldwide annual turnover. For a &euro;10B-revenue group, top-tier exposure is <b style="color:var(--red)">&euro;700M per violation category</b>. Amounts are from Article 99 of Regulation (EU) 2024/1689.</div>
 
         <div style="margin-top:24px;">
           <div class="panel-title" style="font-size:14px;">Enforcement timeline</div>
@@ -509,101 +481,39 @@
         </div>
       </div>
     </div>
-    <div class="grid full exposure-checker">
+    <div class="grid full">
       <div class="panel">
         <div class="panel-head">
-          <div class="checker-copy">
-            <div class="panel-title">AI US and EU Exposure Checker</div>
-            <div class="panel-sub">Directional view of federal, state, sector, EU AI Act, privacy and litigation exposure</div>
-            <div class="note">Select the conditions that match your highest-impact use case. The score and executive response update instantly; use it to prioritize review, not as legal advice.</div>
+          <div>
+            <div class="panel-title">Official classification checkpoints</div>
+            <div class="panel-sub">Use the regulation text as the source of truth; no custom score is applied</div>
+            <div class="note">The prior questionnaire was directional, not an official form. This replacement keeps the workflow anchored to Regulation (EU) 2024/1689 and asks teams to document the legal classification path.</div>
           </div>
-          <span class="badge src">NIST AI RMF ALIGNED</span>
+          <span class="badge src">OFFICIAL SOURCE</span>
         </div>
-
-        <div class="checker-layout">
-          <div class="checker-questions" id="exposureQuestions">
-            <div class="checker-q" data-question="decision">
-              <h4>1. What decision does the system influence?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="0">Content only</button>
-                <button class="checker-option" data-score="8">Customer access or pricing</button>
-                <button class="checker-option" data-score="17">Employment, credit, housing or health</button>
-              </div>
-              <div class="checker-hint">Consequential decisions create the highest civil-rights, state-law and EU high-risk sensitivity.</div>
-            </div>
-
-            <div class="checker-q" data-question="location">
-              <h4>2. Where are affected people located?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="2">Single state / one EU market</button>
-                <button class="checker-option" data-score="8">Several states or EU markets</button>
-                <button class="checker-option" data-score="13">Nationwide, EU-wide or unknown</button>
-              </div>
-              <div class="checker-hint">State-by-state and member-state obligations can accumulate even when the business operates centrally.</div>
-            </div>
-
-            <div class="checker-q" data-question="data">
-              <h4>3. What data does it use?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="1">Public / nonsensitive</button>
-                <button class="checker-option" data-score="8">Personal data</button>
-                <button class="checker-option" data-score="16">Sensitive, biometric or children's data</button>
-              </div>
-            </div>
-
-            <div class="checker-q" data-question="source">
-              <h4>4. How is the model sourced?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="2">Internally built</button>
-                <button class="checker-option" data-score="8">Configured vendor model</button>
-                <button class="checker-option" data-score="14">Opaque third-party service</button>
-              </div>
-            </div>
-
-            <div class="checker-q" data-question="review">
-              <h4>5. What human review exists?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="0">Meaningful review + override</button>
-                <button class="checker-option" data-score="8">Review on exception</button>
-                <button class="checker-option" data-score="15">Fully automated</button>
-              </div>
-            </div>
-
-            <div class="checker-q" data-question="testing">
-              <h4>6. Is performance independently tested?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="0">Current and documented</button>
-                <button class="checker-option" data-score="7">Internal test only</button>
-                <button class="checker-option" data-score="13">No / unknown</button>
-              </div>
-            </div>
-
-            <div class="checker-q" data-question="evidence">
-              <h4>7. Can the organization explain and evidence the outcome?</h4>
-              <div class="checker-options">
-                <button class="checker-option active" data-score="0">Yes, consistently</button>
-                <button class="checker-option" data-score="7">Partially</button>
-                <button class="checker-option" data-score="12">No / unknown</button>
-              </div>
-            </div>
+        <div class="official-checks">
+          <div class="official-check">
+            <div class="oc-id">Article 5</div>
+            <h4>Is the use prohibited?</h4>
+            <p>Screen first for banned practices, including harmful manipulation, certain social scoring and specified biometric practices. If yes, stop and escalate.</p>
           </div>
-
-          <aside class="score-card" aria-live="polite">
-            <div class="score-label">Directional exposure score</div>
-            <div class="score-row">
-              <div class="score-num" id="exposureScore">5</div>
-              <div class="score-band" id="exposureBand">Low exposure</div>
-            </div>
-            <div class="score-meter"><div class="score-fill" id="exposureFill"></div></div>
-            <p class="score-message" id="exposureMessage">Maintain inventory evidence and monitor for scope changes before release.</p>
-            <div class="focus-title">Likely executive focus</div>
-            <div class="focus-list" id="exposureFocus"></div>
-            <div class="checker-actions">
-              <button class="checker-reset" id="exposureReset" type="button">Reset assessment</button>
-              <a class="cta" style="margin-top:0;" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank">NIST AI Framework -></a>
-            </div>
-          </aside>
+          <div class="official-check">
+            <div class="oc-id">Annex I / Annex III</div>
+            <h4>Is it high-risk?</h4>
+            <p>Check whether the system is a safety component/product or falls into listed high-risk use cases such as employment, education, credit, essential services or law enforcement.</p>
+          </div>
+          <div class="official-check">
+            <div class="oc-id">Article 50 / GPAI</div>
+            <h4>Does transparency apply?</h4>
+            <p>Identify chatbot, synthetic content, emotion-recognition, biometric-categorisation and general-purpose model obligations where relevant.</p>
+          </div>
+          <div class="official-check">
+            <div class="oc-id">Operator role</div>
+            <h4>Who owns the duties?</h4>
+            <p>Document whether the organization is provider, deployer, importer, distributor or product manufacturer, because obligations differ by role.</p>
+          </div>
         </div>
+        <a class="cta" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank">Use official regulation text -></a>
       </div>
     </div>
   </div>
@@ -616,8 +526,7 @@
       <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank">McKinsey State of AI 2025</a>
       <a href="https://genai.owasp.org/llm-top-10/" target="_blank">OWASP GenAI Security Project</a>
       <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank">NIST AI RMF 1.0</a>
-      <a href="https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/" target="_blank">EU AI Act Compliance Checker</a>
-      <a href="https://elevateconsult.com/insights/the-cost-of-inaction-budgeting-for-ai-risk-assessment-vs-fines/" target="_blank">Elevate Consulting (fines)</a>
+      <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank">Regulation (EU) 2024/1689</a>
       <a href="https://snyk.io/blog/weaponizing-ai-coding-agents-for-malware-in-the-nx-malicious-package/" target="_blank">Snyk (Nx incident)</a>
       <a href="https://incidentdatabase.ai/cite/1210" target="_blank">AI Incident Database #1210</a>
     </div>
@@ -678,87 +587,6 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   decrypt();
   title.addEventListener('mouseenter', decrypt);
   title.addEventListener('focus', decrypt);
-})();
-
-/* ---------- exposure checker ---------- */
-(function(){
-  const root = document.getElementById('exposureQuestions');
-  if(!root) return;
-  const scoreEl = document.getElementById('exposureScore');
-  const bandEl = document.getElementById('exposureBand');
-  const fillEl = document.getElementById('exposureFill');
-  const messageEl = document.getElementById('exposureMessage');
-  const focusEl = document.getElementById('exposureFocus');
-  const resetEl = document.getElementById('exposureReset');
-  const focusByBand = {
-    low:[
-      'Keep the use case in the AI inventory with clear owner and release scope.',
-      'Document model purpose, data categories and monitoring cadence.',
-      'Reassess if geography, automation or data sensitivity expands.'
-    ],
-    moderate:[
-      'Map applicable federal, state, EU, privacy and sector rules.',
-      'Confirm notice, appeal, testing and vendor evidence requirements.',
-      'Set accountable business, legal and risk owners before scale-up.'
-    ],
-    high:[
-      'Map applicable federal, state and sector rules.',
-      'Close testing, disclosure and explainability gaps.',
-      'Set monitoring, incident thresholds and executive escalation.'
-    ],
-    critical:[
-      'Pause material release until high-risk classification and obligations are confirmed.',
-      'Stand up a formal remediation plan with accountable executive owner.',
-      'Obtain independent validation, legal review and board-level risk visibility.'
-    ]
-  };
-  function bandFor(score){
-    if(score >= 76) return {
-      key:'critical',
-      label:'Critical exposure',
-      message:'Release should pause until legal classification, validation evidence and accountable ownership are resolved.'
-    };
-    if(score >= 55) return {
-      key:'high',
-      label:'High exposure',
-      message:'A formal remediation plan and accountable executive owner are needed before the next material release.'
-    };
-    if(score >= 30) return {
-      key:'moderate',
-      label:'Moderate exposure',
-      message:'Targeted legal, privacy and model-risk review should happen before scale-up or external launch.'
-    };
-    return {
-      key:'low',
-      label:'Low exposure',
-      message:'Maintain inventory evidence and monitor for scope changes before release.'
-    };
-  }
-  function updateExposure(){
-    const active = [...root.querySelectorAll('.checker-option.active')];
-    const raw = active.reduce((sum, btn)=>sum + Number(btn.dataset.score || 0), 0);
-    const score = Math.min(100, Math.round(raw));
-    const band = bandFor(score);
-    scoreEl.textContent = score;
-    bandEl.textContent = band.label;
-    fillEl.style.width = score + '%';
-    messageEl.textContent = band.message;
-    focusEl.innerHTML = focusByBand[band.key].map(item=>`<div class="focus-item"><span class="dot"></span><span>${item}</span></div>`).join('');
-  }
-  root.addEventListener('click', e=>{
-    const btn = e.target.closest('.checker-option');
-    if(!btn) return;
-    btn.closest('.checker-options').querySelectorAll('.checker-option').forEach(opt=>opt.classList.remove('active'));
-    btn.classList.add('active');
-    updateExposure();
-  });
-  resetEl.addEventListener('click', ()=>{
-    root.querySelectorAll('.checker-options').forEach(group=>{
-      group.querySelectorAll('.checker-option').forEach((opt, i)=>opt.classList.toggle('active', i === 0));
-    });
-    updateExposure();
-  });
-  updateExposure();
 })();
 
 /* ---------- chart defaults ---------- */
@@ -837,9 +665,9 @@ new Chart(document.getElementById('mitChart'),{
     labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026 YTD'],
     datasets:[
       {label:'1 Unacceptable', data:[1,1,1,1,3,1,1,5,8,16,2], backgroundColor:'#E0301E'},
-      {label:'2 High Risk',    data:[27,26,30,30,45,55,47,38,60,67,18], backgroundColor:'#A66A2C'},
-      {label:'3 Limited Risk', data:[6,12,6,7,28,12,35,110,198,282,65], backgroundColor:'#7D756C'},
-      {label:'4 Minimal / No Risk', data:[7,9,6,4,16,10,22,15,27,46,15], backgroundColor:'#EB8C00'}
+      {label:'2 High Risk',    data:[27,26,30,30,45,55,47,38,60,67,18], backgroundColor:'#D04A02'},
+      {label:'3 Limited Risk', data:[6,12,6,7,28,12,35,110,198,282,65], backgroundColor:'#FFB600'},
+      {label:'4 Minimal / No Risk', data:[7,9,6,4,16,10,22,15,27,46,15], backgroundColor:'#7D756C'}
     ]
   },
   options:{responsive:true,maintainAspectRatio:false,
@@ -977,8 +805,7 @@ const grid=document.getElementById('owaspGrid');
 owasp.forEach((o,i)=>{
   const card=document.createElement('div');
   card.className='risk-card'+(i===0?' selected':'');
-  card.innerHTML=`<div class="rid">${o.id}</div><div class="rname">${o.name}</div>
-    <div class="rsev">${[1,2,3,4,5].map(n=>`<span class="pip ${n<=o.sev?'on':''}"></span>`).join('')}</div>`;
+  card.innerHTML=`<div class="rid">${o.id}</div><div class="rname">${o.name}</div>`;
   card.addEventListener('click',()=>{
     document.querySelectorAll('.risk-card').forEach(c=>c.classList.remove('selected'));
     card.classList.add('selected');
@@ -993,7 +820,7 @@ function renderDetail(i){
   document.getElementById('riskDetail').innerHTML=`
     <div class="rd-head">
       <div>
-        <div class="rd-id">${o.id} &middot; SEVERITY ${'#'.repeat(o.sev)}${'-'.repeat(5-o.sev)}</div>
+        <div class="rd-id">${o.id}</div>
         <h3>${o.name}</h3>
         <div class="rd-meta">${o.chips.map((c,ci)=>`<span class="chip ${ci%2?'y':''}">${c}</span>`).join('')}</div>
       </div>
