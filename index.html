@@ -59,6 +59,17 @@
   h1 .accent{color:var(--orange);}
   .encrypted-char{color:var(--orange); opacity:.72;}
   .mast-sub{color:var(--sub); font-size:14px; margin-top:8px; max-width:620px; line-height:1.5;}
+  .story-panel{margin-top:26px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; box-shadow:0 14px 34px rgba(45,41,38,.08);}
+  .story-head{display:flex; justify-content:space-between; gap:16px; align-items:flex-start;}
+  .story-head h2{margin:0; font-size:22px;}
+  .story-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px;}
+  .story-card{border:1px solid var(--line); background:#FFFDF8; border-radius:8px; padding:14px; min-height:160px;}
+  .story-card h3{margin:0 0 8px; font-size:14px;}
+  .story-card p{margin:0; color:var(--sub); font-size:12.5px; line-height:1.55;}
+  .story-features{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px;}
+  .story-feature{border-left:3px solid var(--orange); background:#FFFDF8; border-radius:8px; padding:10px 12px; font-size:12.5px; line-height:1.45;}
+  @media(max-width:1000px){.story-grid{grid-template-columns:repeat(2,1fr);} .story-features{grid-template-columns:1fr;}}
+  @media(max-width:620px){.story-grid{grid-template-columns:1fr;}}
 
   /* ===== TABS ===== */
   .tabs{display:flex; gap:4px; margin-top:28px; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(247,240,230,0.94); backdrop-filter:blur(12px); z-index:50; padding-top:6px;}
@@ -171,6 +182,11 @@
   .trust-item:nth-child(3n){border-left-color:var(--orange);}
   .trust-detail{margin-top:14px; border:1px solid var(--line); background:#FFFDF8; border-radius:10px; padding:15px; font-size:13px; line-height:1.6; color:var(--sub);}
   .trust-detail b{color:var(--text);}
+  .trust-detail h4{margin:0 0 8px; font-size:16px; color:var(--text);}
+  .trust-points{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px;}
+  .trust-points div{border:1px solid var(--line); border-radius:8px; padding:10px; background:var(--panel);}
+  .trust-points span{display:block; font-family:var(--mono); font-size:10px; color:var(--text); letter-spacing:.7px; text-transform:uppercase; margin-bottom:4px;}
+  @media(max-width:900px){.trust-points{grid-template-columns:1fr;}}
   @media(max-width:900px){.trust-map{grid-template-columns:1fr;} .trust-list{grid-template-columns:1fr;}}
 
   /* ===== COMPLIANCE TAB ===== */
@@ -249,7 +265,6 @@
         <div class="mast-sub">A single view of the AI incident landscape, the LLM attack surface, and EU regulatory exposure - built from OECD, MIT, OWASP and McKinsey datasets.</div>
       </div>
     </div>
-
     <!-- TABS -->
     <div class="tabs">
       <button class="tab-btn active" data-tab="overview"><span class="n">01</span>Executive Overview</button>
@@ -257,6 +272,7 @@
       <button class="tab-btn" data-tab="owasp"><span class="n">03</span>AI OWASP Top 10</button>
       <button class="tab-btn" data-tab="compliance"><span class="n">04</span>EU AI Act Exposure</button>
       <button class="tab-btn" data-tab="nist"><span class="n">05</span>NIST AI RMF Playbook</button>
+      <button class="tab-btn" data-tab="story"><span class="n">06</span>Our Story</button>
     </div>
   </div>
 
@@ -433,16 +449,16 @@
   <div class="tab-panel" id="tab-nist">
     <div class="owasp-intro">
       <div>
-        <h2>NIST AI RMF Playbook</h2>
-        <p>A practical operating model for responsible AI risk management across governance, mapping, measurement and management.</p>
+        <h2>NIST AI RMF Core</h2>
+        <p>The AI RMF Core organizes AI risk management activities into four functions: Govern, Map, Measure and Manage.</p>
       </div>
       <span class="badge src">SOURCE: NIST AI 100-1</span>
     </div>
     <div class="panel">
       <div class="panel-head">
         <div>
-          <div class="panel-title">Trustworthy AI characteristics</div>
-          <div class="panel-sub">NIST AI RMF Playbook frames trustworthy AI as technical, organizational and socio-technical</div>
+          <div class="panel-title">Characteristics of trustworthy AI systems</div>
+          <div class="panel-sub">NIST AI RMF 1.0 &middot; Part 1, AI risks and trustworthiness</div>
         </div>
         <a class="rd-link" href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank">OPEN NIST AI RMF PLAYBOOK -></a>
       </div>
@@ -458,7 +474,20 @@
           <button class="trust-item" data-trust="fair">Fair, with harmful bias managed</button>
         </div>
       </div>
-      <div class="trust-detail" id="trustDetail"><b>Valid & reliable:</b> The system should perform as intended, consistently and within documented limits for the context where it is used.</div>
+      <div class="trust-detail" id="trustDetail">
+        <h4>Valid & reliable</h4>
+        <p>The system should perform as intended, consistently and within documented limits for the context where it is used.</p>
+        <div class="trust-points">
+          <div><span>What to ask</span>What evidence shows the system works for the intended context and users?</div>
+          <div><span>Risk signal</span>Performance varies across conditions, populations or deployment settings.</div>
+          <div><span>Control focus</span>Validation, reliability testing, monitoring and defined operating limits.</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:18px;">
+      <div class="panel-title">AI RMF Core</div>
+      <div class="panel-sub">NIST functions: Govern, Map, Measure and Manage</div>
+      <div class="note">Select a Core function below for the operating expectation and evidence leaders should ask teams to maintain.</div>
     </div>
     <div class="rmf-grid" id="rmfGrid"></div>
     <div class="risk-detail" id="rmfDetail"></div>
@@ -515,41 +544,70 @@
         <div class="panel-head">
           <div>
             <div class="panel-title">EU AI Act Compliance Checker</div>
-            <div class="panel-sub">Official EU service-desk checker &middot; beta tool</div>
-            <div class="note">Use the official checker for the actual system-specific path. For high-risk systems, use the conformity assessment guide as the walkthrough for what evidence and process may be needed.</div>
+            <div class="panel-sub">Interactive checker and PDF flowchart from artificialintelligenceact.eu</div>
+            <div class="note">Use the linked checker for each individual system. The flowchart states that it is based on Regulation (EU) 2024/1689, Official Journal version of 13 June 2024, and recommends professional legal advice for clarity.</div>
           </div>
           <span class="badge src">DIRECT LINKS</span>
         </div>
         <div class="checker-flow">
           <div class="checker-step">
-            <div class="num">OFFICIAL CHECKER</div>
-            <h4>EU AI Act Compliance Checker</h4>
-            <p>Use the EU service-desk checker to understand which AI Act rules may apply to the system, model or operator role.</p>
+            <div class="num">START</div>
+            <h4>Is it an AI system?</h4>
+            <p>The flowchart starts by testing whether the system fits the AI Act definition: a machine-based system that infers outputs such as predictions, content, recommendations or decisions.</p>
           </div>
           <div class="checker-step">
-            <div class="num">WALKTHROUGH</div>
-            <h4>Conformity Assessment Guide</h4>
-            <p>Use the step-by-step guide for the high-risk conformity assessment process, including timing, responsible party and evidence requirements.</p>
+            <div class="num">ENTITY</div>
+            <h4>Which entity are you?</h4>
+            <p>The form asks whether the organisation is a provider, deployer, distributor, importer, product manufacturer or authorised representative.</p>
           </div>
           <div class="checker-step">
-            <div class="num">STARTING POINT</div>
-            <h4>System or model</h4>
-            <p>The checker begins by distinguishing whether the assessment is for a system or model, then routes the user through the relevant questions.</p>
+            <div class="num">STATUS</div>
+            <h4>Did your role change?</h4>
+            <p>The flowchart checks whether naming, intended-purpose changes or substantial modifications make another actor responsible for provider obligations.</p>
           </div>
           <div class="checker-step">
-            <div class="num">SOURCE</div>
-            <h4>Regulation text</h4>
-            <p>Use Regulation (EU) 2024/1689 as the legal source of truth for definitions, roles, classifications and obligations.</p>
+            <div class="num">RISK</div>
+            <h4>Is it high-risk?</h4>
+            <p>The checker routes users through high-risk questions before showing obligations for providers, deployers and other operators.</p>
           </div>
           <div class="checker-step">
-            <div class="num">LEGAL REVIEW</div>
-            <h4>Confirm before release</h4>
-            <p>Use counsel or a formal compliance workflow for binding classification and release decisions.</p>
+            <div class="num">OUTPUT</div>
+            <h4>Review obligations</h4>
+            <p>The result may identify obligations such as AI literacy, high-risk requirements, transparency duties or other operator obligations.</p>
           </div>
         </div>
-        <a class="cta" href="https://ai-act-service-desk.ec.europa.eu/en/eu-ai-act-compliance-checker" target="_blank">EU AI Act Compliance Checker -></a>
-        <a class="cta" href="file:///C:/Users/nikit/Downloads/ot-comformity-assessment-under-the-eu-ai-act-white-paper.pdf" target="_blank">Conformity Assessment Guide -></a>
+        <a class="cta" href="https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/" target="_blank">EU AI Act Compliance Checker -></a>
+        <a class="cta" href="https://artificialintelligenceact.eu/wp-content/uploads/2025/07/AI-Act-Compliance-Checker-Flowchart-v1.0_compressed.pdf" target="_blank">PDF Flowchart -></a>
       </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 6: OUR STORY ============ -->
+  <div class="tab-panel" id="tab-story">
+    <div class="problem-hero">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Problem statement</div>
+            <div class="panel-sub">Why this view is needed</div>
+          </div>
+        </div>
+        <div class="statement">AI adoption is scaling faster than incident readiness, security controls, and regulatory classification evidence.</div>
+        <div class="note" style="font-size:14px; line-height:1.75; color:var(--text);">Executives need one place to connect three signals: how quickly AI use is expanding, what kinds of AI incidents are materializing, and which governance or compliance actions are expected before systems become high-impact business infrastructure.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Project overview</div>
+        <div class="flow-list">
+          <div class="flow-row"><div class="step">1</div><div><b>Read the market signal</b><span>Use OECD, MIT and McKinsey datasets to show the acceleration of incidents, adoption and risk concentration.</span></div></div>
+          <div class="flow-row"><div class="step">2</div><div><b>Translate risk into controls</b><span>Map incidents to OWASP attack patterns and NIST AI RMF Core operating expectations.</span></div></div>
+          <div class="flow-row"><div class="step">3</div><div><b>Prepare for regulatory exposure</b><span>Use EU AI Act tiers, enforcement timing and compliance-flow questions to support classification discussions.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="value-grid">
+      <div class="value-card"><h3>What it solves</h3><p>Turns scattered AI risk material into a single executive-ready dashboard for governance, security and regulatory planning.</p></div>
+      <div class="value-card"><h3>Who it helps</h3><p>Risk, technology, legal, compliance and business leaders who need a shared language for AI risk decisions.</p></div>
+      <div class="value-card"><h3>How to use it</h3><p>Start with the one-line takeaway, review incident trends, inspect OWASP and NIST controls, then use the EU AI Act page to guide classification work.</p></div>
     </div>
   </div>
 
@@ -562,7 +620,8 @@
       <a href="https://owasp.org/" target="_blank">owasp.org</a>
       <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank">NIST AI RMF Playbook</a>
       <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank">Regulation (EU) 2024/1689</a>
-      <a href="https://ai-act-service-desk.ec.europa.eu/en/eu-ai-act-compliance-checker" target="_blank">EU AI Act Compliance Checker</a>
+      <a href="https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/" target="_blank">EU AI Act Compliance Checker</a>
+      <a href="https://artificialintelligenceact.eu/wp-content/uploads/2025/07/AI-Act-Compliance-Checker-Flowchart-v1.0_compressed.pdf" target="_blank">PDF Flowchart</a>
       <a href="https://intelligence.dlapiper.com/artificial-intelligence/?t=08-enforcement&c=EU" target="_blank">DLA Piper EU enforcement summary</a>
       <a href="https://snyk.io/blog/weaponizing-ai-coding-agents-for-malware-in-the-nx-malicious-package/" target="_blank">Snyk (Nx incident)</a>
       <a href="https://incidentdatabase.ai/cite/1210" target="_blank">AI Incident Database #1210</a>
@@ -895,38 +954,89 @@ renderDetail(0);
   const trustDetail=document.getElementById('trustDetail');
   if(!trustDetail) return;
   const trustCopy={
-    valid:'<b>Valid & reliable:</b> The system should perform as intended, consistently and within documented limits for the context where it is used.',
-    safe:'<b>Safe:</b> The system should avoid unacceptable harm to people, property, operations and the environment across normal and foreseeable misuse conditions.',
-    secure:'<b>Secure & resilient:</b> The system should resist attacks, misuse and failures, and recover gracefully when issues occur.',
-    accountable:'<b>Accountable & transparent:</b> Owners, decisions, limitations, testing evidence and oversight responsibilities should be clear enough for review and challenge.',
-    explainable:'<b>Explainable & interpretable:</b> Relevant stakeholders should be able to understand why the system behaves the way it does at the level needed for their role.',
-    privacy:'<b>Privacy-enhanced:</b> Data collection, use, retention and disclosure should be limited, protected and aligned with privacy obligations.',
-    fair:'<b>Fair, with harmful bias managed:</b> Teams should identify, measure and reduce unfair outcomes across affected groups throughout the system life cycle.'
+    valid:{
+      title:'Valid & reliable',
+      summary:'The system should perform as intended, consistently and within documented limits for the context where it is used.',
+      ask:'What evidence shows the system works for the intended context and users?',
+      signal:'Performance varies across conditions, populations or deployment settings.',
+      control:'Validation, reliability testing, monitoring and defined operating limits.'
+    },
+    safe:{
+      title:'Safe',
+      summary:'The system should not create unreasonable risk of harm to people, property, operations, communities or the environment during intended use or foreseeable misuse.',
+      ask:'What harms could occur if the system fails, is misused, or is over-trusted?',
+      signal:'The use case can affect health, safety, access, rights, financial outcomes or critical operations.',
+      control:'Hazard analysis, human escalation, release gates, misuse testing and incident response.'
+    },
+    secure:{
+      title:'Secure & resilient',
+      summary:'The system should withstand attacks, misuse, data or model compromise, and operational disruption while recovering appropriately when issues occur.',
+      ask:'How could attackers manipulate inputs, prompts, tools, data, models or connected systems?',
+      signal:'The system connects to sensitive data, external tools, developer environments or production workflows.',
+      control:'Threat modeling, red-teaming, least privilege, access controls, logging and recovery plans.'
+    },
+    accountable:{
+      title:'Accountable & transparent',
+      summary:'People should know who owns the system, what it is intended to do, what its limits are, and what evidence supports release and continued operation.',
+      ask:'Who is accountable for decisions, exceptions, monitoring and user-facing disclosures?',
+      signal:'Ownership is split across business, technology, vendor, legal and risk teams without a clear decision record.',
+      control:'Named owners, governance records, documentation, model cards, vendor evidence and audit trails.'
+    },
+    explainable:{
+      title:'Explainable & interpretable',
+      summary:'Relevant stakeholders should be able to understand system behavior at the level needed to contest, oversee, troubleshoot or make decisions.',
+      ask:'Can users, reviewers and affected stakeholders understand why the system produced a material output?',
+      signal:'The system influences consequential decisions but teams cannot explain important drivers or limitations.',
+      control:'Explanation methods, documentation, user notices, reviewer training and decision traceability.'
+    },
+    privacy:{
+      title:'Privacy-enhanced',
+      summary:'Data collection, use, retention and disclosure should be limited, protected and aligned with privacy obligations and user expectations.',
+      ask:'What personal, sensitive, biometric, confidential or children\'s data enters the system?',
+      signal:'Prompts, logs, training data or outputs may expose personal or confidential information.',
+      control:'Data minimization, retention limits, masking, access restrictions, privacy review and monitoring.'
+    },
+    fair:{
+      title:'Fair, with harmful bias managed',
+      summary:'Teams should identify and reduce harmful bias or unequal performance that could create unfair outcomes for people or groups.',
+      ask:'Which groups could be affected differently, and how is that measured before and after launch?',
+      signal:'The system supports employment, credit, housing, education, health, access, pricing or enforcement decisions.',
+      control:'Bias testing, representative data review, impact assessment, monitoring and remediation thresholds.'
+    }
   };
+  function renderTrust(key){
+    const item=trustCopy[key] || trustCopy.valid;
+    trustDetail.innerHTML=`<h4>${item.title}</h4><p>${item.summary}</p>
+      <div class="trust-points">
+        <div><span>What to ask</span>${item.ask}</div>
+        <div><span>Risk signal</span>${item.signal}</div>
+        <div><span>Control focus</span>${item.control}</div>
+      </div>`;
+  }
   document.querySelectorAll('.trust-item').forEach(btn=>{
     btn.addEventListener('click',()=>{
       document.querySelectorAll('.trust-item').forEach(item=>item.classList.remove('active'));
       btn.classList.add('active');
-      trustDetail.innerHTML=trustCopy[btn.dataset.trust] || trustCopy.valid;
+      renderTrust(btn.dataset.trust);
     });
   });
 })();
 
 /* ---------- NIST AI RMF Playbook ---------- */
 const rmf=[
-  {id:'GOVERN',name:'Govern',tag:'Cross-cutting',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
+  {id:'GOVERN',name:'Govern',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
    what:'Governance is the connective tissue of the AI RMF. It establishes accountability, policies, roles, risk tolerance and oversight so AI risk management is built into normal enterprise decision-making.',
    exec:['Name accountable owners for each material AI system and its risk decisions.','Set policies for acceptable use, acquisition, monitoring, incident response and escalation.','Require an inventory that links use cases, vendors, data, risks, controls and evidence.'],
    evidence:['AI governance charter and committee minutes','Approved risk appetite and exception process','AI system inventory with accountable owners','Training and role-based responsibilities']},
-  {id:'MAP',name:'Map',tag:'Context',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
+  {id:'MAP',name:'Map',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
    what:'Map frames the system in context: who is affected, what the model does, where it is used, what data it relies on, and which benefits and harms are plausible.',
    exec:['Define the business purpose, affected populations and decision context before scaling.','Identify legal, privacy, safety, civil-rights and operational exposure by use case.','Document assumptions, limitations, data lineage and third-party dependencies.'],
    evidence:['Use-case intake and risk classification','Data maps and model/source documentation','Stakeholder impact analysis','Regulatory and sector obligation map']},
-  {id:'MEASURE',name:'Measure',tag:'Testing',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
+  {id:'MEASURE',name:'Measure',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
    what:'Measure turns risk into evidence. Teams evaluate model behavior, performance, bias, robustness, security, privacy and explainability using fit-for-purpose methods and thresholds.',
    exec:['Define measurable acceptance thresholds before launch.','Test performance across relevant populations, edge cases and misuse scenarios.','Separate independent validation from teams that build or configure the model.'],
    evidence:['Test plans, validation reports and benchmark results','Bias, robustness, privacy and security testing','Red-team findings and remediation tracking','Monitoring metrics and drift thresholds']},
-  {id:'MANAGE',name:'Manage',tag:'Response',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
+  {id:'MANAGE',name:'Manage',url:'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
    what:'Manage prioritizes and acts on AI risks. It converts mapping and measurement into treatment plans, approvals, monitoring, incident response and continuous improvement.',
    exec:['Prioritize risks based on impact, likelihood, uncertainty and risk tolerance.','Assign treatment owners, dates and release gates for unresolved findings.','Monitor production performance and trigger incident response when thresholds are crossed.'],
    evidence:['Risk register with treatment decisions','Release gates and exception approvals','Production monitoring and incident playbooks','Post-incident lessons learned and control updates']}
@@ -935,7 +1045,7 @@ const rmfGrid=document.getElementById('rmfGrid');
 rmf.forEach((item,i)=>{
   const card=document.createElement('div');
   card.className='rmf-card'+(i===0?' selected':'');
-  card.innerHTML=`<div class="rid">${item.id} &middot; ${item.tag}</div><div class="rname">${item.name}</div><div class="rdesc">${item.what}</div>`;
+  card.innerHTML=`<div class="rid">${item.id}</div><div class="rname">${item.name}</div><div class="rdesc">${item.what}</div>`;
   card.addEventListener('click',()=>{
     document.querySelectorAll('.rmf-card').forEach(c=>c.classList.remove('selected'));
     card.classList.add('selected');
@@ -949,9 +1059,9 @@ function renderRmf(i){
   document.getElementById('rmfDetail').innerHTML=`
     <div class="rd-head">
       <div>
-        <div class="rd-id">NIST AI RMF PLAYBOOK &middot; CORE FUNCTION</div>
+        <div class="rd-id">AI RMF CORE &middot; ${item.id}</div>
         <h3>${item.name}</h3>
-        <div class="rd-meta"><span class="chip">${item.id}</span><span class="chip y">${item.tag}</span></div>
+        <div class="rd-meta"><span class="chip">${item.id}</span></div>
       </div>
       <a class="rd-link" href="${item.url}" target="_blank">READ NIST AI RMF PLAYBOOK -></a>
     </div>
